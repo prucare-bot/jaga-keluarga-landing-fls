@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaga Keluarga — Life Planner Independen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14110D;
+    --bg-alt:#1C1712;
+    --bg-raise:#221B14;
+    --ink:#F5EFE6;
+    --ink-soft:#B9AC9A;
+    --ink-faint:#8A7D6C;
+    --amber:#E2711D;
+    --amber-soft:rgba(226,113,29,.14);
+    --moss:#5C8A6A;
+    --line:rgba(245,239,230,.10);
+    --radius:12px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 22px;}
+  h1,h2,h3{font-family:'Manrope',sans-serif;font-weight:800;margin:0;letter-spacing:-.01em;}
+
+  /* nav */
+  nav{padding:22px 0;}
+  .navrow{display:flex;justify-content:space-between;align-items:center;}
+  .wordmark{font-family:'Manrope',sans-serif;font-weight:800;font-size:16px;letter-spacing:-.01em;
+    display:flex;align-items:center;gap:8px;}
+  .wordmark .leaf{width:9px;height:9px;background:var(--moss);border-radius:2px 8px 2px 8px;display:inline-block;}
+  .nav-cta{font-size:13.5px;font-weight:600;color:var(--ink-soft);text-decoration:none;
+    border:1px solid var(--line);padding:8px 14px;border-radius:100px;}
+  .nav-cta:hover{border-color:var(--amber);color:var(--ink);}
+
+  /* hero */
+  .hero{padding:52px 0 44px;}
+  .hero-grid{display:grid;grid-template-columns:1fr 200px;gap:36px;align-items:start;}
+  @media(max-width:700px){.hero-grid{grid-template-columns:1fr;}}
+  .hero h1{font-size:clamp(30px,4.6vw,46px);line-height:1.14;max-width:12ch;}
+  .hero .lede{margin-top:18px;font-size:16px;line-height:1.65;color:var(--ink-soft);max-width:52ch;}
+  .hero-actions{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:700;
+    padding:13px 20px;border-radius:9px;text-decoration:none;cursor:pointer;border:1.5px solid transparent;}
+  .btn-primary{background:var(--amber);color:#1A0F04;}
+  .btn-primary:hover{background:#F0813A;}
+  .btn-outline{border-color:var(--line);color:var(--ink);}
+  .btn-outline:hover{border-color:var(--ink-soft);}
+  .trust-line{margin-top:20px;font-size:13px;color:var(--ink-faint);}
+
+  .glyph{
+    align-self:center;justify-self:end;width:170px;height:170px;position:relative;
+  }
+  .glyph svg{width:100%;height:100%;}
+
+  hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
+
+  /* why section */
+  .why{padding:44px 0;}
+  .why-head{max-width:46ch;margin-bottom:26px;}
+  .why-head h2{font-size:24px;line-height:1.25;}
+  .why-list{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);}
+  @media(max-width:700px){.why-list{grid-template-columns:1fr;}}
+  .why-item{padding:20px 20px 20px 0;border-right:1px solid var(--line);}
+  .why-item:last-child{border-right:none;}
+  @media(max-width:700px){.why-item{border-right:none;border-bottom:1px solid var(--line);padding:18px 0;}
+    .why-item:last-child{border-bottom:none;}}
+  .why-item .bar{width:22px;height:3px;background:var(--amber);margin-bottom:12px;}
+  .why-item h3{font-size:15.5px;font-weight:700;margin-bottom:8px;}
+  .why-item p{font-size:13.6px;line-height:1.6;color:var(--ink-soft);margin:0;}
+
+  /* calculator CTA */
+  .calc-cta{
+    margin:14px 0 44px;padding:30px 28px;border-radius:16px;
+    background:linear-gradient(135deg,var(--bg-raise),#241A0E 130%);
+    border:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;gap:22px;flex-wrap:wrap;
+  }
+  .calc-cta .c-eyebrow{font-size:12.5px;color:var(--amber);font-weight:700;margin-bottom:6px;}
+  .calc-cta h3{font-size:21px;line-height:1.3;max-width:26ch;}
+  .calc-cta p{margin:8px 0 0;font-size:13.6px;color:var(--ink-soft);max-width:40ch;line-height:1.6;}
+
+  /* how it works */
+  .steps{padding:8px 0 44px;}
+  .steps-head{max-width:46ch;margin-bottom:26px;}
+  .steps-head h2{font-size:24px;line-height:1.25;}
+  .step-row{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:18px 0;border-top:1px solid var(--line);}
+  .step-row:last-child{border-bottom:1px solid var(--line);}
+  .step-num{font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;color:var(--amber);padding-top:2px;}
+  .step-body h3{font-size:15.5px;font-weight:700;margin-bottom:5px;}
+  .step-body p{font-size:13.6px;line-height:1.6;color:var(--ink-soft);margin:0;max-width:56ch;}
+
+  /* footer */
+  footer{padding:36px 0 10px;}
+  .foot-cta{
+    padding:26px 28px;border-radius:16px;background:var(--bg-alt);border:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:28px;
+  }
+  .foot-cta h3{font-size:19px;}
+  .foot-cta p{margin:6px 0 0;font-size:13px;color:var(--ink-soft);}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+    font-size:12px;color:var(--ink-faint);padding-top:18px;}
+  .foot-note{max-width:60ch;line-height:1.6;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <div class="navrow">
+      <div class="wordmark"><span class="leaf"></span> Jaga Keluarga</div>
+      <a class="nav-cta" href="https://wa.me/6281384177989" target="_blank" rel="noopener">Chat WhatsApp</a>
+    </div>
+  </nav>
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <h1>Proteksi keluarga bukan dokumen, tapi keputusan yang dijaga.</h1>
+        <p class="lede">Saya membantu keluarga Indonesia memahami risiko kesehatan &amp; jiwa mereka, lalu menyusun rencana proteksi yang sesuai kondisi dan kemampuan — bukan sekadar menjual polis.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="kalkulator-premi-miuhc-2026.html">Hitung Premi MiUHC</a>
+          <a class="btn btn-outline" href="https://wa.me/6281384177989" target="_blank" rel="noopener">Konsultasi Gratis</a>
+        </div>
+        <p class="trust-line">18 tahun mendampingi keluarga menyusun proteksi kesehatan &amp; jiwa.</p>
+      </div>
+      <div class="glyph" aria-hidden="true">
+        <svg viewBox="0 0 170 170" xmlns="http://www.w3.org/2000/svg">
+          <path d="M85 8 L150 32 V78 C150 118 122 148 85 162 C48 148 20 118 20 78 V32 Z"
+                fill="none" stroke="#5C8A6A" stroke-width="2.5" opacity="0.55"/>
+          <path d="M85 30 L128 46 V78 C128 106 110 128 85 138 C60 128 42 106 42 78 V46 Z"
+                fill="rgba(226,113,29,.10)" stroke="#E2711D" stroke-width="2"/>
+          <path d="M67 82 L79 96 L108 62" fill="none" stroke="#F5EFE6" stroke-width="4"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+</div>
+
+<hr class="rule">
+
+<div class="wrap">
+  <section class="why">
+    <div class="why-head">
+      <h2>Kenapa keluarga butuh rencana proteksi, bukan cuma produk</h2>
+    </div>
+    <div class="why-list">
+      <div class="why-item">
+        <div class="bar"></div>
+        <h3>Biaya kesehatan naik lebih cepat dari gaji</h3>
+        <p>Inflasi medis di Indonesia jauh di atas inflasi umum. Rencana yang dibuat lima tahun lalu bisa jadi sudah tidak cukup hari ini.</p>
+      </div>
+      <div class="why-item">
+        <div class="bar"></div>
+        <h3>Setiap keluarga punya titik rawan berbeda</h3>
+        <p>Usia anak, riwayat kesehatan, dan penghasilan tunggal atau ganda semuanya mengubah plan yang paling masuk akal.</p>
+      </div>
+      <div class="why-item">
+        <div class="bar"></div>
+        <h3>Polis yang tidak dipahami sering berhenti di tengah jalan</h3>
+        <p>Tugas saya menjelaskan sampai Anda benar-benar mengerti apa yang dilindungi — dan apa yang tidak.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <div class="calc-cta">
+    <div>
+      <div class="c-eyebrow">Simulasi mandiri</div>
+      <h3>Kalkulator Premi MiUHC 2026</h3>
+      <p>Masukkan usia dan jenis kelamin untuk melihat estimasi premi tahunan di berbagai plan, sebelum bicara lebih lanjut.</p>
+    </div>
+    <a class="btn btn-primary" href="kalkulator-premi-miuhc-2026.html">Buka Kalkulator</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="steps">
+    <div class="steps-head">
+      <h2>Bagaimana prosesnya</h2>
+    </div>
+    <div class="step-row">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Konsultasi awal</h3>
+        <p>Ngobrol santai lewat WhatsApp atau tatap muka soal kondisi keluarga, proteksi yang sudah ada, dan yang masih jadi celah.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Simulasi &amp; rekomendasi</h3>
+        <p>Saya susun beberapa opsi plan dengan simulasi premi yang jelas, supaya Anda bisa membandingkan sebelum memutuskan.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Pengajuan &amp; pendampingan</h3>
+        <p>Saya dampingi dari pengisian aplikasi sampai polis aktif — dan tetap jadi kontak Anda kalau suatu saat perlu klaim.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <footer>
+    <div class="foot-cta">
+      <div>
+        <h3>Ada yang mau ditanyakan dulu?</h3>
+        <p>Tidak perlu langsung memutuskan — tanya dulu saja apa yang mengganjal.</p>
+      </div>
+      <a class="btn btn-primary" href="https://wa.me/6281384177989" target="_blank" rel="noopener">Chat WhatsApp</a>
+    </div>
+    <div class="foot-bottom">
+      <div class="foot-note">Halaman edukasi pribadi seorang Life Planner independen. Informasi bersifat umum dan bukan penawaran resmi; ilustrasi premi &amp; ketentuan polis mengikuti dokumen resmi yang diterbitkan.</div>
+      <div>© 2026 Jaga Keluarga</div>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
